@@ -13,14 +13,15 @@
       width: 100%;
       height: 100%;
       z-index: 0;
-      object-fit: cover;
+      object-fit: contain; /* Affiche entièrement la vidéo par défaut */
     }
-    /* Ajustement pour mobile : montrer tout le vidéo */
-    @media (max-aspect-ratio: 1/1) {
+    /* Sur écrans larges (paysage) : couvrir */
+    @media (min-aspect-ratio: 16/9) {
       #bg-video {
-        object-fit: contain;
+        object-fit: cover;
       }
     }
+
     body {
       margin: 0;
       font-family: 'Arial', sans-serif;
@@ -102,9 +103,7 @@
 </head>
 <body>
   <!-- Vidéo de fond -->
-    <!-- Vidéo de fond -->
   <video id="bg-video" autoplay muted loop playsinline>
-    <!-- Assure-toi que le fichier vidéo est dans le dossier videos/ -->
     <source src="videos/189916-887039157_small.mp4" type="video/mp4">
     Votre navigateur ne supporte pas la vidéo de fond.
   </video>
