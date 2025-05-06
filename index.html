@@ -13,7 +13,7 @@
       width: 100%;
       height: 100%;
       z-index: 0;
-      object-fit: contain; /* Vidéo entièrement visible sans découpe */
+      object-fit: cover; /* Toujours couvrir tout l'écran, même en portrait */
     }
     /* Sur écrans larges (paysage) : couvrir */
     @media (min-aspect-ratio: 16/9) {
@@ -85,7 +85,10 @@
       opacity: 0;
       transition: opacity 1s ease-in-out;
     }
-    .image.active { opacity: 1; }
+    .image.active {
+      opacity: 0.8; /* Légère transparence pour voir la vidéo derrière */
+      transition: opacity 1s ease-in-out;
+    }
     #message {
       display: none;
       position: absolute;
@@ -104,8 +107,12 @@
 </head>
 <body>
   <!-- Vidéo de fond -->
-  <video id="bg-video" autoplay muted loop playsinline>
-    <source src="videos/ballon.mp4" type="video/mp4">
+    <!-- Vidéo de fond avec sources adaptatives -->
+  <video id="bg-video" muted loop playsinline>
+    <!-- Version portrait pour mobiles (1:1 ou plus carré) -->
+    <source src="videos/balloons_portrait.mp4" type="video/mp4" media="(max-aspect-ratio: 1/1)">
+    <!-- Version paysage par défaut -->
+    <source src="videos/189916-887039157_small.mp4" type="video/mp4">
     Votre navigateur ne supporte pas la vidéo de fond.
   </video>
 
