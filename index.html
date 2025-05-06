@@ -7,13 +7,14 @@
   <style>
     /* Vidéo de fond de ballons */
     #bg-video {
+      display: none; /* masquée initialement */
       position: fixed;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
       z-index: 0;
-      object-fit: cover; /* Toujours couvrir tout l'écran, même en portrait */
+      object-fit: cover;
     }
     /* Sur écrans larges (paysage) : couvrir */
     @media (min-aspect-ratio: 16/9) {
@@ -25,7 +26,7 @@
     body {
       margin: 0;
       font-family: 'Arial', sans-serif;
-      background: none;
+      background: black; /* Fond noir initial */
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -170,6 +171,13 @@
       images[index].classList.add('active');
     }
     function startSlideshow() {
+      // changer le fond en transparent pour laisser voir la vidéo
+      document.body.style.background = 'none';
+      // afficher et lancer la vidéo de fond
+      const bgVideo = document.getElementById('bg-video');
+      bgVideo.style.display = 'block';
+      bgVideo.play().catch(() => {});
+
       prompt.style.display = 'none';
       gift.style.display = 'none';
       document.getElementById('header').style.display = 'none';
@@ -189,3 +197,4 @@
   </script>
 </body>
 </html>
+
