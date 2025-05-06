@@ -109,7 +109,7 @@
 <body>
   <!-- Vidéo de fond -->
     <!-- Vidéo de fond avec sources adaptatives -->
-  <video id="bg-video" muted loop playsinline>
+  <video id="bg-video" muted loop playsinline preload="none">
     <!-- Version portrait pour mobiles (1:1 ou plus carré) -->
     <source src="videos/balloons_portrait.mp4" type="video/mp4" media="(max-aspect-ratio: 1/1)">
     <!-- Version paysage par défaut -->
@@ -126,6 +126,7 @@
       <line x1="32" y1="20" x2="32" y2="56" stroke="#d6336c" stroke-width="2"/>
       <line x1="8" y1="36" x2="56" y2="36" stroke="#d6336c" stroke-width="2"/>
     </svg>
+  </div>
   <div id="slideshow">
     <img class="image" src="images/1.jpg" alt="Image 1">
     <img class="image" src="images/2.jpg" alt="Image 2">
@@ -174,7 +175,8 @@
       document.body.style.background = 'none';
       // afficher et lancer la vidéo de fond
       const bgVideo = document.getElementById('bg-video');
-      bgVideo.style.display = 'block';
+      // recharge la vidéo pour s'assurer qu'elle ne démarre pas en avance
+      bgVideo.currentTime = 0;
       bgVideo.play().catch(() => {});
 
       prompt.style.display = 'none';
